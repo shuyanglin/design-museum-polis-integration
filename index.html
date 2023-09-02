@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Test Polis for Design Museum</h1>
+    <p id="demo">test</p>
+    
+    <div 
+    class='polis' 
+    data-conversation_id='5sjjknpcra' 
+    data-ucv="true"
+    data-ucw="false"
+    data-show_vis="true"
+    ></div>
+    <script async src='https://pol.is/embed.js'></script>
+    <script>
+
+        window.addEventListener("resize", function(){
+        document.getElementById("demo").innerHTML = Math.random();
+        });
+        window.addEventListener("message", function(event){
+            console.log(event.data);
+            if (event.data.name === "vote") { alert("vote!")};
+        });
+    </script>
+
+</body>
+
+</html>
