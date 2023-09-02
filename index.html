@@ -6,9 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Test Polis for Design Museum</h1>
-    <p id="demo">test</p>
-    
+    <button type="button" onClick="window.location.reload()">
+        Start
+    </button>
     <div 
     class='polis' 
     data-conversation_id='5sjjknpcra' 
@@ -18,16 +18,25 @@
     ></div>
     <script async src='https://pol.is/embed.js'></script>
     <script>
+        var timeoutHandler;
 
-        window.addEventListener("resize", function(){
-        document.getElementById("demo").innerHTML = Math.random();
-        });
         window.addEventListener("message", function(event){
-            console.log(event.data);
-            if (event.data.name === "vote") { alert("vote!")};
+            var data = event.data || {};
+            if (data.name === "vote") {
+                // when user left the conversation for too long (2min), reload
+                if(timeoutHandler){
+                    window.clearTimeout(timeoutHandler);
+                    console.log('cleared');
+                }
+                timeoutHandler = window.setTimeout(() => {
+                    document.location.reload();                  
+                }, 120000);
+            };
         });
-    </script>
 
+        
+    </script>
+    
 </body>
 
 </html>
